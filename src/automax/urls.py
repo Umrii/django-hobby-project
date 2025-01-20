@@ -19,9 +19,11 @@ from django.contrib import admin
 from django.urls import path,include
 from main import urls as main_app_url
 from django.conf.urls.static import static
+from users import urls as users_app_urls
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include(main_app_url)),
+    path('',include(users_app_urls))
 ]
 
 
