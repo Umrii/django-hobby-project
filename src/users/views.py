@@ -4,6 +4,7 @@ from django.contrib.auth.forms import AuthenticationForm,UserCreationForm
 from django.contrib.auth import authenticate,login
 from django.contrib import messages
 from django.views import View
+
 # Create your views here.
 def login_view(request):
     if request.method=='POST':
@@ -32,6 +33,14 @@ class RegisterView(View):
         return render(request,'views/register.html',{'register_form':register_form})
     
     def post(self,request):
-        register_form=UserCreationForm(request,data=request.POST)
+        register_form=UserCreationForm(data=request.POST)
         if register_form.is_valid():
             user=register_form.save()
+            user.refresh_from_db() # This is to ensure that the user instance is updated with the new data
+
+            login(request,user)
+            messages.success(request,f'User {user.username} registered successfully.')
+            return redirect('home')
+        else:
+            messages.error(request,'An error occurred trying to register.')
+            return render(request,'views/register.html',{'register_form':register_form})

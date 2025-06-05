@@ -1,6 +1,6 @@
 from .models import Profile,Location
 from django.contrib.auth.models import User
-from django.db.models.signals import post_save
+from django.db.models.signals import post_save,post_delete
 from django.dispatch import receiver
 
 @receiver(post_save,sender=User)
@@ -15,6 +15,12 @@ def create_profile_location(sender,instance,created,**kwargs):
         # Associate the Location with the Profile
         instance.location = location
         instance.save()
+
+@receiver(post_delete,sender=Profile)
+def delete_profile_location(sender,instance,*args,**kwargs):
+    if instance.location != None:
+        instance.location.delete()
+
 
 
 
