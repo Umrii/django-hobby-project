@@ -9,5 +9,5 @@ def main_view(request):
 
 @login_required
 def home_view(request):
-    print(f"Current user: {request.user}") 
+    # print(f"Current user: {request.user}") 
     return render(request, "views/home.html", {"request": request})
