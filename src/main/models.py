@@ -1,3 +1,9 @@
 from django.db import models
+import uuid
+from users.models import Profile
+class List(models.Model):
 
-# Create your models here.
+    id = models.UUIDField(primary_key=True,default=uuid.uuid4,unique=True,editable=False)
+    created_at=models.DateTimeField(auto_now_add=True)
+    updated_at=models.DateTimeField(auto_now=True)
+    seller = models.ForeignKey(Profile,on_delete=models.CASCADE)
