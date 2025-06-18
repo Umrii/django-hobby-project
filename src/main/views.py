@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 # Create your views here.
-
+from .models import List
 def main_view(request):
     return render(request,'views/main.html',{"name":"AutoMax"})
 
@@ -10,4 +10,8 @@ def main_view(request):
 @login_required
 def home_view(request):
     # print(f"Current user: {request.user}") 
-    return render(request, "views/home.html", {"request": request})
+    listings=List.objects.all()
+    context={
+        'listings': listings,
+    }
+    return render(request, "views/home.html", context)

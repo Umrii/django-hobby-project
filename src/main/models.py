@@ -21,5 +21,6 @@ class List(models.Model):
     image=models.ImageField(upload_to=user_listing_path,default='None')
 
     def __str__(self):
-        return f"{self.seller.user.username}'s Listing - {self.model}"
+        return f"{self.
+                  seller.user.username}'s Listing - {self.model}"
 

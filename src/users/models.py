@@ -19,7 +19,7 @@ class Location(models.Model):
           return f'Location {self.id}'
 class Profile(models.Model):
     user=models.OneToOneField(User,on_delete=models.CASCADE)
-    photo = models.ImageField(upload_to=user_directory_path,null=True)
+    photo = models.ImageField(upload_to=user_directory_path,null=True,blank=True)
     bio=models.CharField(max_length=140,blank=True)
     phone_number=models.CharField(max_length=12,blank=True)
     location=models.OneToOneField(Location,on_delete=models.SET_NULL,null=True)
