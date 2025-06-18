@@ -23,4 +23,4 @@ def list_view(request):
         pass
     elif request.method=='GET':
         pass
-    return render(request, "views/main.html", {})
+    return render(request, "views/list.html", {})
