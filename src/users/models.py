@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-from localflavor.pk.models import PKStateField,PKPostCodeField
+from localflavor.us.models import USStateField, USPostalCodeField
 from .utils import user_directory_path
 # Create your models here.
 
@@ -12,8 +12,8 @@ class Location(models.Model):
     address_1=models.CharField(max_length=128,blank=True)
     address_2=models.CharField(max_length=128,blank=True)
     city=models.CharField(max_length=64)
-    state=PKStateField(default='None')
-    zip_code=PKPostCodeField(blank=True)
+    state=USStateField(default='None')
+    zip_code=USPostalCodeField(blank=True)
 
     def __str__(self):
           return f'Location {self.id}'

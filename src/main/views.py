@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required
 # Create your views here.
 from .models import List
 from .forms import ListForm
-
+from users.forms import LocationForm
 def main_view(request):
     return render(request,'views/main.html',{"name":"AutoMax"})
 
@@ -24,5 +24,6 @@ def list_view(request):
         pass
     elif request.method=='GET':
         listing_form=ListForm()
+        location_form=LocationForm()
 
-    return render(request, "views/list.html", {"listing_form": listing_form})
+    return render(request, "views/list.html", {"listing_form": listing_form, "location_form": location_form,})
