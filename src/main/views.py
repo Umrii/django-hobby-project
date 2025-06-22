@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 # Create your views here.
 from .models import List
+from .forms import ListForm
 
 def main_view(request):
     return render(request,'views/main.html',{"name":"AutoMax"})
@@ -22,5 +23,6 @@ def list_view(request):
     if request.method=='POST':
         pass
     elif request.method=='GET':
-        pass
-    return render(request, "views/list.html", {})
+        listing_form=ListForm()
+
+    return render(request, "views/list.html", {"listing_form": listing_form})
